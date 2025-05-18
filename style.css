@@ -1,0 +1,37 @@
+body.dark {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+h1 {
+  color: #90caf9;
+}
+select, input[type="time"], button {
+  font-size: 1em;
+  padding: 5px;
+  margin-top: 10px;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #666;
+}
+.section {
+  margin-top: 30px;
+}
+#signal-output {
+  margin-top: 20px;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+.history-box {
+  max-height: 200px;
+  overflow-y: auto;
+  text-align: left;
+  margin: 0 auto;
+  padding: 10px;
+  width: 90%;
+  border: 1px solid #444;
+  background: #2c2c2c;
+  font-size: 0.95em;
+}

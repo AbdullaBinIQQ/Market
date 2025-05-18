@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robi - 0xAzuki Trading</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+</head>
+<body class="dark">
+  <h1>Robi - Live Signal</h1>
+
+  <div>
+    <label for="pair">Currency Pair:</label>
+    <select id="pair" onchange="updateSignal(); updateChart();">
+      <optgroup label="Real Market">
+        <option value="EUR/USD">EUR/USD</option>
+        <option value="USD/JPY">USD/JPY</option>
+        <option value="GBP/USD">GBP/USD</option>
+        <option value="AUD/USD">AUD/USD</option>
+        <option value="USD/CHF">USD/CHF</option>
+        <option value="USD/CAD">USD/CAD</option>
+        <option value="NZD/USD">NZD/USD</option>
+      </optgroup>
+      <optgroup label="OTC Market">
+        <option value="EUR/USD_OTC">EUR/USD (OTC)</option>
+        <option value="USD/JPY_OTC">USD/JPY (OTC)</option>
+        <option value="GBP/USD_OTC">GBP/USD (OTC)</option>
+      </optgroup>
+    </select>
+  </div>
+
+  <div>
+    <button onclick="refreshWithLoading()">🔄 Refresh Signal</button>
+  </div>
+
+  <div id="signal-output">Fetching signal...</div>
+
+  <div class="section">
+    <h3>Live Chart View</h3>
+    <div id="tv_chart_container"></div>
+  </div>
+
+  <div class="section">
+    <h3>Signal History</h3>
+    <div id="signal-history" class="history-box"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    let currentChart;
+
+    function updateChart() {
+      const pair = document.getElementById("pair").value.replace("_OTC", "").replace("/", "");
+      const symbol = "FX:" + pair;
+
+      document.getElementById("tv_chart_container").innerHTML = ""; // Clear old chart
+
+      currentChart = new TradingView.widget({
+        "width": "100%",
+        "height": 400,
+        "symbol": symbol,
+        "interval": "1",
+        "timezone": "Etc/UTC",
+        "theme": "dark",
+        "style": "1",
+        "locale": "en",
+        "toolbar_bg": "#1e1e1e",
+        "enable_publishing": false,
+        "hide_top_toolbar": false,
+        "save_image": false,
+        "container_id": "tv_chart_container"
+      });
+    }
+
+    updateChart(); // initialize on page load
+  </script>
+</body>
+</html>
